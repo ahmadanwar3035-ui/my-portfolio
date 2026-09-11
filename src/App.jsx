@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar";
 import Loader from "./Components/Loader";
-import Hero from "./components/Hero";
+import Hero from "./Components/Hero";
 import About from "./Components/About";
 import Skills from "./Components/Skills";
 import Experience from "./Components/Experience";
