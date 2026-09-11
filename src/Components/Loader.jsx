@@ -1,343 +1,189 @@
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Loader() {
-  const progress = useMotionValue(0);
-
-  const roundedProgress = useTransform(
-    progress,
-    (value) => `${Math.round(value)}%`
-  );
-
-  useEffect(() => {
-    animate(progress, 100, {
-      duration: 3,
-      ease: "easeInOut",
-    });
-  }, []);
-
   return (
-    <div className="fixed inset-0 z-[99999] bg-[#020617] text-white overflow-hidden flex items-center justify-center">
+    <div className="fixed inset-0 z-[9999] bg-[#030712] flex items-center justify-center overflow-hidden">
 
-      {/* ================= BACKGROUND ================= */}
-
-      {/* Grid */}
+      {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-[0.08]"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(34,211,238,0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34,211,238,0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: "50px 50px",
+          backgroundImage:
+            "linear-gradient(rgba(34,211,238,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.35) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
         }}
       />
 
-      {/* Main Glow */}
+      {/* Background Glow */}
       <motion.div
         animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.15, 0.3, 0.15],
+          scale: [1, 1.15, 1],
+          opacity: [0.15, 0.25, 0.15],
         }}
         transition={{
-          duration: 4,
+          duration: 3,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute w-[600px] h-[600px] rounded-full bg-cyan-500/10 blur-[140px]"
+        className="absolute w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] rounded-full bg-cyan-500/20 blur-[100px]"
       />
 
-      {/* Purple Glow */}
       <motion.div
         animate={{
-          x: [-100, 100, -100],
-          y: [50, -50, 50],
+          scale: [1.1, 1, 1.1],
+          opacity: [0.12, 0.22, 0.12],
         }}
         transition={{
-          duration: 6,
+          duration: 3.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute w-[400px] h-[400px] rounded-full bg-purple-600/10 blur-[120px]"
+        className="absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[400px] lg:h-[400px] rounded-full bg-purple-500/20 blur-[90px]"
       />
 
-      {/* ================= CONTENT ================= */}
+      {/* Main Loader */}
+      <div className="relative flex flex-col items-center justify-center">
 
-      <div className="relative z-10 flex flex-col items-center">
-
-        {/* Top Small Text */}
+        {/* Outer Ring */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-10 flex items-center gap-3"
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full border border-cyan-400/20 border-t-cyan-400"
+        />
+
+        {/* Middle Ring */}
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute w-40 h-40 sm:w-52 sm:h-52 lg:w-68 lg:h-68 rounded-full border border-purple-400/20 border-b-purple-400"
+        />
+
+        {/* Inner Ring */}
+        <motion.div
+          animate={{
+            scale: [1, 1.08, 1],
+            rotate: 360,
+          }}
+          transition={{
+            scale: {
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+            rotate: {
+              duration: 10,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
+          className="absolute w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full border border-cyan-400/30"
+        />
+
+        {/* Center */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+          }}
+          className="relative z-10 w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(34,211,238,0.15)]"
         >
-          <span className="w-10 h-[1px] bg-cyan-400" />
-
-          <span className="text-[10px] md:text-xs tracking-[0.5em] text-gray-500">
-            WELCOME TO MY WORLD
-          </span>
-
-          <span className="w-10 h-[1px] bg-purple-500" />
-        </motion.div>
-
-
-        {/* ================= ORB ================= */}
-
-        <div className="relative flex items-center justify-center">
-
-          {/* Outer Glow */}
           <motion.div
             animate={{
               scale: [1, 1.15, 1],
-              opacity: [0.3, 0.6, 0.3],
+              opacity: [0.8, 1, 0.8],
             }}
             transition={{
-              duration: 2,
+              duration: 1.8,
               repeat: Infinity,
+              ease: "easeInOut",
             }}
-            className="absolute w-72 h-72 rounded-full bg-cyan-400/10 blur-3xl"
-          />
-
-          {/* Outer Rotating Ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute w-72 h-72 md:w-80 md:h-80 rounded-full border border-cyan-400/20 border-t-cyan-400 border-r-transparent"
-          />
-
-          {/* Second Ring */}
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute w-60 h-60 md:w-68 md:h-68 rounded-full border border-purple-500/20 border-b-purple-500 border-l-transparent"
-          />
-
-          {/* Third Ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute w-48 h-48 rounded-full border border-cyan-400/10 border-t-cyan-300"
-          />
-
-          {/* Center */}
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: 1,
-              type: "spring",
-            }}
-            className="
-              relative
-              w-40 h-40
-              md:w-48 md:h-48
-              rounded-full
-              bg-[#020617]
-              border border-white/10
-              flex items-center justify-center
-              shadow-[0_0_100px_rgba(34,211,238,0.12)]
-            "
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-cyan-400"
           >
-
-            {/* Inner Glow */}
-            <motion.div
-              animate={{
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              className="absolute inset-5 rounded-full bg-cyan-400/10 blur-2xl"
-            />
-
-            {/* A Logo */}
-            <motion.div
-              animate={{
-                textShadow: [
-                  "0 0 10px rgba(34,211,238,0.2)",
-                  "0 0 40px rgba(34,211,238,0.9)",
-                  "0 0 10px rgba(34,211,238,0.2)",
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              className="relative text-7xl md:text-8xl font-black tracking-tighter"
-            >
-              A
-              <span className="text-cyan-400">.</span>
-            </motion.div>
-
+            A.
           </motion.div>
+        </motion.div>
 
-          {/* Orbit Dot */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute w-80 h-80 md:w-[360px] md:h-[360px]"
-          >
-            <div className="absolute top-0 left-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_20px_#22d3ee]" />
-          </motion.div>
-
-        </div>
-
-
-        {/* ================= NAME ================= */}
-
+        {/* Orbit Dot */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
+        >
+          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)]" />
+        </motion.div>
+
+        {/* Name */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 0.5,
-            duration: 0.8,
+            delay: 0.4,
+            duration: 0.7,
           }}
-          className="mt-14 text-center"
+          className="mt-20 sm:mt-24 lg:mt-28 text-4xl sm:text-5xl lg:text-7xl font-bold tracking-[0.15em] sm:tracking-[0.25em] text-center"
         >
+          AHMAD
+          <span className="text-cyan-400">.</span>
+        </motion.h1>
 
-          <h1 className="
-            text-6xl
-            md:text-8xl
-            lg:text-9xl
-            font-black
-            tracking-[-0.06em]
-            leading-none
-          ">
-            AHMAD
-            <span className="text-cyan-400">.</span>
-          </h1>
-
-          <div className="mt-5 flex items-center justify-center gap-4">
-
-            <span className="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent to-cyan-400" />
-
-            <p className="
-              text-[10px]
-              md:text-xs
-              tracking-[0.5em]
-              text-gray-400
-              uppercase
-            ">
-              Frontend Developer
-            </p>
-
-            <span className="h-[1px] w-8 md:w-16 bg-gradient-to-l from-transparent to-purple-500" />
-
-          </div>
-
-        </motion.div>
-
-
-        {/* ================= LOADING ================= */}
-
+        {/* Loading Text */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-12 w-72 md:w-96"
+          transition={{ delay: 0.7 }}
+          className="mt-5 sm:mt-6 flex flex-col items-center"
         >
+          <p className="text-gray-500 text-xs sm:text-sm tracking-[0.2em] uppercase">
+            Loading Portfolio
+          </p>
 
-          <div className="flex justify-between items-end mb-3">
-
-            <div>
-              <p className="text-[9px] tracking-[0.3em] text-gray-600">
-                SYSTEM STATUS
-              </p>
-
-              <p className="text-xs text-gray-400 mt-1">
-                Building experience...
-              </p>
-            </div>
-
-            <motion.span className="text-sm font-mono text-cyan-400">
-              {roundedProgress}
-            </motion.span>
-
-          </div>
-
-
-          {/* Progress Background */}
-          <div className="h-[3px] w-full bg-white/10 rounded-full overflow-hidden">
-
+          {/* Progress Bar */}
+          <div className="w-52 sm:w-72 lg:w-96 h-1 mt-4 bg-white/10 rounded-full overflow-hidden">
             <motion.div
-              style={{
-                width: useTransform(progress, (value) => `${value}%`),
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
               }}
-              className="
-                h-full
-                rounded-full
-                bg-gradient-to-r
-                from-cyan-400
-                via-blue-500
-                to-purple-500
-                shadow-[0_0_15px_rgba(34,211,238,0.7)]
-              "
+              className="h-full bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
             />
-
           </div>
-
         </motion.div>
-
-
-        {/* Bottom Text */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-          className="
-            mt-7
-            text-[9px]
-            tracking-[0.4em]
-            text-gray-700
-            uppercase
-          "
-        >
-          Design • Code • Create
-        </motion.p>
-
       </div>
 
-
-      {/* ================= CORNER DETAILS ================= */}
-
-      <div className="absolute top-8 left-8 text-[9px] text-gray-700 tracking-widest">
-        01
+      {/* Corner Details */}
+      <div className="absolute top-5 left-5 sm:top-8 sm:left-8 text-[9px] sm:text-[10px] text-cyan-400/40 tracking-[0.2em]">
+        SYSTEM_INIT
       </div>
 
-      <div className="absolute top-8 right-8 text-[9px] text-gray-700 tracking-widest">
+      <div className="absolute top-5 right-5 sm:top-8 sm:right-8 text-[9px] sm:text-[10px] text-purple-400/40 tracking-[0.2em]">
         2026
       </div>
 
-      <div className="absolute bottom-8 left-8 text-[9px] text-gray-700 tracking-widest">
-        PORTFOLIO
+      <div className="absolute bottom-5 left-5 sm:bottom-8 sm:left-8 text-[9px] sm:text-[10px] text-cyan-400/40 tracking-[0.2em]">
+        FRONTEND
       </div>
 
-      <div className="absolute bottom-8 right-8 text-[9px] text-gray-700 tracking-widest">
-        V1.0
+      <div className="absolute bottom-5 right-5 sm:bottom-8 sm:right-8 text-[9px] sm:text-[10px] text-purple-400/40 tracking-[0.2em]">
+        READY
       </div>
-
     </div>
   );
 }
-
-
 

@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
 
@@ -21,37 +22,62 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-32 bg-[#040816]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <span className="text-cyan-400 uppercase tracking-[0.3em]">
+    <section
+      id="testimonials"
+      className="relative overflow-hidden py-20 sm:py-24 lg:py-32 bg-[#040816]"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
+        >
+          <span className="text-cyan-400 text-sm sm:text-base uppercase tracking-[0.2em] sm:tracking-[0.3em]">
             Testimonials
           </span>
 
-          <h2 className="text-5xl lg:text-6xl font-bold mt-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
             What People
             <span className="text-cyan-400"> Say</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {testimonials.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{
-                y: -12,
-                scale: 1.02,
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
               }}
-              className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-[30px] p-8"
+              whileHover={{ y: -10 }}
+              className="w-full min-w-0 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-7 lg:p-8 hover:border-cyan-500/40 transition duration-300"
             >
-              <FaQuoteLeft className="text-cyan-400 text-3xl mb-6" />
+              {/* Quote Icon */}
+              <FaQuoteLeft className="text-cyan-400 text-2xl sm:text-3xl mb-5 sm:mb-6" />
 
-              <p className="text-gray-400 leading-8">"{item.text}"</p>
+              {/* Testimonial */}
+              <p className="text-gray-400 text-sm sm:text-base leading-7 sm:leading-8">
+                "{item.text}"
+              </p>
 
-              <div className="mt-8">
-                <h4 className="font-bold text-xl">{item.name}</h4>
+              {/* Person */}
+              <div className="mt-6 sm:mt-8">
+                <h4 className="font-bold text-lg sm:text-xl">
+                  {item.name}
+                </h4>
 
-                <p className="text-cyan-400 text-sm mt-1">{item.role}</p>
+                <p className="text-cyan-400 text-xs sm:text-sm mt-1">
+                  {item.role}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -60,3 +86,4 @@ export default function Testimonials() {
     </section>
   );
 }
+
