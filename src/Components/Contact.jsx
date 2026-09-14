@@ -1,12 +1,7 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import {
-  HiOutlineMail,
-  HiOutlineLocationMarker,
-  HiOutlinePaperAirplane,
-  HiOutlineCheckCircle,
-} from "react-icons/hi";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,248 +10,281 @@ export default function Contact() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setStatus("Message sent successfully! ✅");
+    if (!formData.name.trim()) {
+      setStatus("Please enter your name. ❌");
+      return;
+    }
 
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    if (!formData.email.trim()) {
+      setStatus("Please enter your email. ❌");
+      return;
+    }
 
-    setTimeout(() => {
-      setStatus("");
-    }, 4000);
+    if (!formData.message.trim()) {
+      setStatus("Please enter your message. ❌");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const result = await emailjs.send(
+        "service_93501mg",
+        "template_enmou68",
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        "GSpgcxXuTr7qQf2yL",
+      );
+
+      console.log("EmailJS Success:", result);
+
+      setStatus("Message sent successfully! ✅");
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+
+      if (error?.text) {
+        setStatus(error.text);
+      } else {
+        setStatus("Something went wrong. Please try again. ❌");
+      }
+    } finally {
+      setLoading(false);
+
+      setTimeout(() => {
+        setStatus("");
+      }, 6000);
+    }
   };
 
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-6 py-24 lg:ml-[270px] lg:px-12 xl:px-20"
+      className="relative overflow-hidden bg-[#030712] px-5 py-24 text-white md:px-10 lg:ml-[270px] lg:px-16"
     >
       {/* Background Glow */}
-      <div className="pointer-events-none absolute left-0 top-10 h-80 w-80 rounded-full bg-purple-600/10 blur-[130px]" />
+      <div className="pointer-events-none absolute left-1/2 top-10 h-80 w-80 -translate-x-1/2 rounded-full bg-purple-600/10 blur-[120px]" />
 
-      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-fuchsia-600/10 blur-[130px]" />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-6xl">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="mb-14 text-center"
         >
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-purple-400">
+          <span className="mb-4 inline-block rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-400">
             Get In Touch
-          </p>
+          </span>
 
-          <h2 className="text-4xl font-black text-white sm:text-5xl">
-            Let's Work
-            <span className="ml-2 bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-black tracking-tight md:text-5xl">
+            Let's Work{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
               Together
             </span>
           </h2>
 
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
-            Have a project, idea or opportunity? Feel free to reach out. I'd
-            love to hear from you and discuss how we can build something great.
+          <p className="mx-auto mt-5 max-w-2xl text-gray-400">
+            Have a project in mind or want to discuss an opportunity? Feel free
+            to send me a message.
           </p>
-
-          <div className="mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500" />
         </motion.div>
 
-        {/* Contact Layout */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          {/* Left Side */}
+        {/* Main Grid */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl"
           >
-            <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-9">
-              <h3 className="text-2xl font-bold text-white">
-                Contact Information
-              </h3>
+            <h3 className="text-2xl font-bold">
+              Let's build something amazing.
+            </h3>
 
-              <p className="mt-4 text-sm leading-7 text-gray-500">
-                I'm always open to discussing frontend development,
-                collaborations, freelance projects and new opportunities.
+            <p className="mt-4 leading-7 text-gray-400">
+              I'm always open to discussing new projects, creative ideas,
+              frontend opportunities, and collaborations.
+            </p>
+
+            {/* Email */}
+            <a
+              href="mailto:ahmadanwar3035@gmail.com"
+              className="group mt-8 flex items-center gap-4"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 text-purple-400 transition-all duration-300 group-hover:bg-purple-500/20">
+                <FaEnvelope />
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Email</p>
+                <p className="text-sm text-white sm:text-base">
+                  ahmadanwar3035@gmail.com
+                </p>
+              </div>
+            </a>
+
+            {/* Location */}
+            <div className="mt-6 flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 text-purple-400">
+                <FaMapMarkerAlt />
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Location</p>
+                <p className="text-sm text-white sm:text-base">Pakistan</p>
+              </div>
+            </div>
+
+            {/* Availability */}
+            <div className="mt-10 rounded-2xl border border-purple-500/20 bg-gradient-to-r from-purple-500/10 to-fuchsia-500/10 p-5">
+              <div className="flex items-center gap-3">
+                <span className="h-3 w-3 animate-pulse rounded-full bg-green-400 shadow-lg shadow-green-400/50" />
+
+                <p className="text-sm font-medium text-gray-200">
+                  Available for opportunities
+                </p>
+              </div>
+
+              <p className="mt-3 text-sm leading-6 text-gray-400">
+                Currently available for frontend development projects,
+                internships, and exciting collaborations.
               </p>
-
-              {/* Email */}
-              <a
-                href="mailto:ahmadanwar3035@gmail.com"
-                className="group mt-8 flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-4 transition-all duration-300 hover:border-purple-500/30 hover:bg-purple-500/5"
-              >
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-purple-500/10 text-xl text-purple-400">
-                  <HiOutlineMail />
-                </div>
-
-                <div className="min-w-0">
-                  <p className="text-xs text-gray-600">Email</p>
-
-                  <p className="mt-1 truncate text-sm text-gray-300 transition-colors group-hover:text-purple-300">
-                    ahmadanwar3035@gmail.com
-                  </p>
-                </div>
-              </a>
-
-              {/* Location */}
-              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-purple-500/10 text-xl text-purple-400">
-                  <HiOutlineLocationMarker />
-                </div>
-
-                <div>
-                  <p className="text-xs text-gray-600">Location</p>
-
-                  <p className="mt-1 text-sm text-gray-300">Pakistan</p>
-                </div>
-              </div>
-
-              {/* Socials */}
-              <div className="mt-8">
-                <p className="text-xs uppercase tracking-wider text-gray-600">
-                  Connect With Me
-                </p>
-
-                <div className="mt-4 flex gap-3">
-                  <a
-                    // href="https://github.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
-                  >
-                    <FaGithub />
-                  </a>
-
-                  <a
-                    href="https://linkedin.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
-                  >
-                    <FaLinkedinIn />
-                  </a>
-                </div>
-              </div>
-
-              {/* Availability */}
-              <div className="mt-8 flex items-center gap-3 rounded-2xl border border-green-500/10 bg-green-500/[0.03] p-4">
-                <span className="relative flex h-3 w-3">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-50" />
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-green-400" />
-                </span>
-
-                <p className="text-xs text-gray-500">
-                  Available for frontend opportunities
-                </p>
-              </div>
             </div>
           </motion.div>
 
-          {/* Form */}
-          <motion.div
+          {/* Contact Form */}
+          <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-9"
+            transition={{ duration: 0.7 }}
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-white">
-                Send Me a Message
-              </h3>
+            {/* Name */}
+            <div>
+              <label
+                htmlFor="name"
+                className="mb-2 block text-sm font-medium text-gray-300"
+              >
+                Your Name
+              </label>
 
-              <p className="mt-2 text-sm text-gray-500">
-                Fill out the form below and I'll get back to you.
-              </p>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter your name"
+                autoComplete="name"
+                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30"
+              />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name */}
-              <div>
-                <label className="mb-2 block text-xs font-medium text-gray-400">
-                  Your Name
-                </label>
-
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-700 focus:border-purple-500/50 focus:bg-purple-500/[0.03]"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="mb-2 block text-xs font-medium text-gray-400">
-                  Email Address
-                </label>
-
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                  required
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-700 focus:border-purple-500/50 focus:bg-purple-500/[0.03]"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="mb-2 block text-xs font-medium text-gray-400">
-                  Message
-                </label>
-
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your project..."
-                  rows="6"
-                  required
-                  className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-700 focus:border-purple-500/50 focus:bg-purple-500/[0.03]"
-                />
-              </div>
-
-              {/* Status */}
-              {status && (
-                <div className="flex items-center gap-2 rounded-xl border border-green-500/20 bg-green-500/5 px-4 py-3 text-sm text-green-400">
-                  <HiOutlineCheckCircle className="text-lg" />
-
-                  {status}
-                </div>
-              )}
-
-              {/* Button */}
-              <button
-                type="submit"
-                className="group flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-purple-600/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-purple-600/30"
+            {/* Email */}
+            <div className="mt-5">
+              <label
+                htmlFor="email"
+                className="mb-2 block text-sm font-medium text-gray-300"
               >
-                Send Message
-                <HiOutlinePaperAirplane className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </button>
-            </form>
-          </motion.div>
+                Your Email
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                autoComplete="email"
+                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="mt-5">
+              <label
+                htmlFor="message"
+                className="mb-2 block text-sm font-medium text-gray-300"
+              >
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Write your message..."
+                rows="6"
+                className="w-full resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30"
+              />
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-6 py-4 font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/30 disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-60"
+            >
+              {loading ? (
+                <>
+                  <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <FaPaperPlane />
+                </>
+              )}
+            </button>
+
+            {/* Status */}
+            {status && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mt-5 rounded-xl border px-4 py-3 text-center text-sm ${
+                  status.includes("successfully")
+                    ? "border-green-500/20 bg-green-500/10 text-green-400"
+                    : "border-red-500/20 bg-red-500/10 text-red-400"
+                }`}
+              >
+                {status}
+              </motion.div>
+            )}
+          </motion.form>
         </div>
       </div>
     </section>
