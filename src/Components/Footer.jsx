@@ -49,8 +49,8 @@ export default function Footer() {
             className="flex items-center gap-3"
           >
             <a
-              href="https://github.com/"
-              target="_blank"
+              // href="https://github.com/"
+              // target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
@@ -69,7 +69,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="mailto:ahmadanwar3035@gmail.com"
+              // href="mailto:ahmadanwar3035@gmail.com"
               aria-label="Email"
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
             >
