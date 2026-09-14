@@ -1,12 +1,7 @@
-
 import { motion } from "framer-motion";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaArrowRight,
-} from "react-icons/fa";
-import imageProfile from "../images/ahmad2.jpeg";
-
+import { FaReact, FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { SiNextdotjs, SiTailwindcss, SiJavascript } from "react-icons/si";
+import ahmadProfile from "../images/ahmad2.jpeg"
 export default function Hero() {
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({
@@ -17,154 +12,174 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-[#030712]"
+      className="relative flex min-h-screen items-center overflow-hidden px-6 py-24 lg:ml-[270px] lg:px-12 xl:px-20"
     >
       {/* Background Glow */}
-      <div className="absolute -top-20 -left-20 w-64 h-64 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] bg-cyan-500/20 blur-[120px] lg:blur-[180px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/4 top-20 h-72 w-72 rounded-full bg-purple-600/20 blur-[120px]" />
 
-      <div className="absolute -bottom-20 -right-20 w-64 h-64 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] bg-purple-500/20 blur-[120px] lg:blur-[180px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute bottom-10 right-10 h-80 w-80 rounded-full bg-fuchsia-600/10 blur-[140px]" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 min-h-screen flex items-center relative z-10 pt-28 pb-20 lg:pt-20 lg:pb-10">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 xl:gap-20 items-center">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-2">
+        {/* LEFT CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Badge */}
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-purple-400" />
 
-          {/* ================= LEFT ================= */}
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="w-full max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
-          >
-            <span className="inline-block px-4 sm:px-5 py-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-400 text-sm sm:text-base">
+            <span className="text-sm font-medium text-purple-300">
               Frontend Developer
             </span>
+          </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-black mt-7 sm:mt-8 leading-[0.95]">
+          {/* Heading */}
+          <h1 className="text-5xl font-black leading-tight text-white sm:text-6xl xl:text-7xl">
+            Hi, I'm{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-500 bg-clip-text text-transparent">
               Ahmad
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Anwar
-              </span>
-            </h1>
+            </span>
+            <br />
+            Anwar.
+          </h1>
 
-            <p className="text-gray-400 text-base sm:text-lg lg:text-xl mt-7 sm:mt-8 leading-7 sm:leading-8 max-w-xl mx-auto lg:mx-0">
-              I craft modern web experiences with React.js, Next.js and
-              Tailwind CSS focused on performance, clean UI and seamless
-              user interactions.
-            </p>
+          {/* Description */}
+          <p className="mt-7 max-w-xl text-base leading-8 text-gray-400 sm:text-lg">
+            I build modern, responsive and user-focused web experiences using
+            React.js, Next.js, JavaScript and Tailwind CSS. I turn ideas and
+            designs into clean, interactive and scalable interfaces.
+          </p>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 sm:gap-5 mt-8 sm:mt-10">
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-500 font-semibold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300"
-              >
-                View Projects
-                <FaArrowRight />
-              </button>
+          {/* Buttons */}
+          <div className="mt-9 flex flex-wrap gap-4">
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-600/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-purple-500/40"
+            >
+              View My Work →
+            </button>
 
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-2xl border border-white/20 hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
-              >
-                Contact Me
-              </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="rounded-xl border border-white/10 bg-white/[0.03] px-7 py-3.5 text-sm font-semibold text-gray-200 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10"
+            >
+              Contact Me
+            </button>
+          </div>
+
+          {/* Social Links */}
+          <div className="mt-10 flex items-center gap-4">
+            <span className="text-sm text-gray-600">Find me on</span>
+
+            <a
+              // href="#"
+              // target="_blank"
+              rel="noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
+            >
+              <FaGithub />
+            </a>
+
+            <a
+               href="https://linkedin.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
+            >
+              <FaLinkedinIn />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* RIGHT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="relative flex justify-center lg:justify-end"
+        >
+          {/* Main Card */}
+          <div className="relative">
+            {/* Glow */}
+            <div className="absolute inset-0 scale-90 rounded-[40px] bg-purple-600/20 blur-[80px]" />
+
+            {/* Image Container */}
+            <div className="relative h-[430px] w-[320px] overflow-hidden rounded-[35px] border border-purple-500/20 bg-gradient-to-b from-purple-500/10 to-transparent shadow-2xl shadow-purple-900/20 sm:h-[500px] sm:w-[380px]">
+              <img
+                src={ahmadProfile}
+                alt="Ahmad Anwar"
+                className="h-full w-full object-cover object-top"
+              />
+
+              {/* Bottom Gradient */}
+              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#07070d] via-[#07070d]/60 to-transparent" />
+
+              {/* Name */}
+              <div className="absolute bottom-7 left-7">
+                <p className="text-xs uppercase tracking-[0.3em] text-purple-400">
+                  Developer
+                </p>
+
+                <h2 className="mt-1 text-2xl font-bold text-white">
+                  Ahmad Anwar
+                </h2>
+              </div>
             </div>
 
-            {/* Social Icons */}
-            <div className="flex justify-center lg:justify-start gap-6 mt-9 sm:mt-10 text-2xl sm:text-3xl">
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="hover:text-cyan-400 transition"
-              >
-                <FaLinkedin />
-              </a>
-
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="hover:text-cyan-400 transition"
-              >
-                <FaGithub />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* ================= RIGHT ================= */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative w-full flex justify-center px-4 sm:px-8 lg:px-0"
-          >
+            {/* Floating Card - Technologies */}
             <motion.div
-              animate={{
-                y: [0, -15, 0],
-              }}
+              animate={{ y: [0, -10, 0] }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
+                ease: "easeInOut",
               }}
-              className="relative w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[390px] xl:max-w-[420px] border border-cyan-500/20 bg-white/5 backdrop-blur-lg rounded-[25px] sm:rounded-[30px] p-3 sm:p-4"
+              className="absolute -left-10 top-16 hidden rounded-2xl border border-white/10 bg-[#0d0d17]/90 p-4 shadow-2xl backdrop-blur-xl sm:block"
             >
-              {/* Image Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 blur-3xl opacity-30 rounded-[30px] pointer-events-none" />
+              <p className="mb-3 text-xs text-gray-500">Tech Stack</p>
 
-              <img
-                src={imageProfile}
-                alt="Ahmad Anwar"
-                className="relative w-full aspect-[4/5] object-cover rounded-2xl sm:rounded-3xl"
-              />
-
-              {/* Developer Badge */}
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-[#0f172a]/95 backdrop-blur-xl border border-cyan-500/20">
-                <p className="text-cyan-400 font-semibold text-sm sm:text-base">
-                  React.js Developer
-                </p>
+              <div className="flex gap-3 text-xl">
+                <FaReact className="text-cyan-400" />
+                <SiNextdotjs className="text-white" />
+                <SiJavascript className="text-yellow-400" />
+                <SiTailwindcss className="text-cyan-300" />
               </div>
             </motion.div>
 
-            {/* Floating Card 1 */}
+            {/* Floating Card - Projects */}
             <motion.div
-              animate={{ y: [-8, 8, -8] }}
+              animate={{ y: [0, 10, 0] }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
               }}
-              className="hidden sm:block absolute bottom-8 left-0 lg:-left-6 xl:-left-10 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl lg:rounded-3xl p-4 lg:p-6"
+              className="absolute -right-8 bottom-20 hidden rounded-2xl border border-purple-500/20 bg-[#0d0d17]/90 px-5 py-4 shadow-2xl backdrop-blur-xl sm:block"
             >
-              <h4 className="text-cyan-400 font-bold text-2xl lg:text-3xl">
-                10+
-              </h4>
-              <p className="text-gray-400 text-sm lg:text-base">
-                Technologies
-              </p>
-            </motion.div>
+              <p className="text-2xl font-black text-white">3+</p>
 
-            {/* Floating Card 2 */}
-            <motion.div
-              animate={{ y: [8, -8, 8] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-              }}
-              className="hidden sm:block absolute top-8 right-0 lg:-right-6 xl:-right-10 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl lg:rounded-3xl p-4 lg:p-6"
-            >
-              <h4 className="text-purple-400 font-bold text-2xl lg:text-3xl">
-                3+
-              </h4>
-              <p className="text-gray-400 text-sm lg:text-base">
-                Projects
-              </p>
+              <p className="text-xs text-gray-500">Projects Built</p>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-gray-600 lg:flex"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+
+        <div className="h-8 w-px bg-gradient-to-b from-purple-500 to-transparent" />
+      </motion.div>
     </section>
   );
 }
-

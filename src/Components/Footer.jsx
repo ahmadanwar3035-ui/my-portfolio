@@ -1,63 +1,106 @@
-
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedinIn, FaHeart } from "react-icons/fa";
+import { HiArrowUp } from "react-icons/hi";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="border-t border-white/10 bg-[#030712]">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20">
-        <div className="text-center">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#030712] lg:ml-[270px]">
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-purple-600/10 blur-[120px]" />
 
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-12 lg:px-12 xl:px-20">
+        {/* Top */}
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           {/* Logo */}
-          <h2 className="text-3xl sm:text-4xl font-bold">
-            Ahmad<span className="text-cyan-400">.</span>
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <button
+              onClick={scrollToTop}
+              className="group flex items-center gap-3"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-fuchsia-600 text-sm font-black text-white shadow-lg shadow-purple-600/20 transition-transform duration-300 group-hover:scale-105">
+                AA
+              </div>
 
-          {/* Description */}
-          <p className="text-gray-400 text-sm sm:text-base mt-5 sm:mt-6 max-w-xl mx-auto leading-7">
-            Frontend Developer focused on building modern, responsive and
-            engaging web experiences.
-          </p>
+              <div className="text-left">
+                <p className="text-sm font-bold text-white">Ahmad Anwar</p>
+
+                <p className="text-xs text-gray-600">Frontend Developer</p>
+              </div>
+            </button>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex justify-center items-center gap-5 sm:gap-6 mt-7 sm:mt-8 text-2xl sm:text-3xl">
-
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center gap-3"
+          >
             <a
               href="https://github.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="hover:text-cyan-400 hover:-translate-y-1 transition duration-300"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
             >
               <FaGithub />
             </a>
 
             <a
-              href="https://linkedin.com/"
+              href="https://linkedin.com/in/ahmad-anwar-99a676343/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="hover:text-cyan-400 hover:-translate-y-1 transition duration-300"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
             >
-              <FaLinkedin />
+              <FaLinkedinIn />
             </a>
 
             <a
               href="mailto:ahmadanwar3035@gmail.com"
               aria-label="Email"
-              className="hover:text-cyan-400 hover:-translate-y-1 transition duration-300"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
             >
-              <FaEnvelope />
+              @
             </a>
+          </motion.div>
+        </div>
 
-          </div>
+        {/* Divider */}
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-          {/* Copyright */}
-          <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10">
-            <p className="text-gray-500 text-xs sm:text-sm leading-6">
-              © 2026 Ahmad Anwar. Crafted with React & Tailwind CSS.
-            </p>
-          </div>
+        {/* Bottom */}
+        <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+          <p className="text-xs text-gray-600">
+            © {new Date().getFullYear()} Ahmad Anwar. All rights reserved.
+          </p>
 
+          <p className="flex items-center gap-1.5 text-xs text-gray-600">
+            Crafted with
+            <FaHeart className="text-[10px] text-purple-500" />
+            using React & Tailwind CSS
+          </p>
+
+          {/* Back To Top */}
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-xs font-medium text-gray-500 transition-all duration-300 hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
+          >
+            Back to top
+            <HiArrowUp className="transition-transform duration-300 group-hover:-translate-y-1" />
+          </button>
         </div>
       </div>
     </footer>

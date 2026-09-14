@@ -1,83 +1,59 @@
-
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
-    name: "Team Member",
-    role: "Frontend Developer",
-    text: "Ahmad consistently delivers clean, responsive and modern interfaces with great attention to detail.",
+    name: "Team Lead",
+    role: "ZEIKH Technologies",
+    feedback:
+      "Ahmad consistently delivers clean, responsive and high-quality frontend solutions. His React.js skills and attention to detail make him a valuable team member.",
   },
   {
-    name: "Project Reviewer",
-    role: "UI Reviewer",
-    text: "Excellent understanding of frontend development and strong problem-solving skills.",
-  },
-  {
-    name: "Client Feedback",
-    role: "Project Client",
-    text: "Professional communication, quality work and outstanding user interface implementation.",
+    name: "Project Mentor",
+    role: "Senior Frontend Developer",
+    feedback:
+      "He has a strong understanding of modern frontend development and always focuses on writing maintainable, scalable and user-friendly code.",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="relative overflow-hidden py-20 sm:py-24 lg:py-32 bg-[#040816]"
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-
+    <section id="testimonials" className="py-24 lg:py-32 bg-[#EFE6D7]">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12 sm:mb-16 lg:mb-20"
-        >
-          <span className="text-cyan-400 text-sm sm:text-base uppercase tracking-[0.2em] sm:tracking-[0.3em]">
+        <div className="text-center mb-20">
+          <span className="text-[#C6A972] uppercase tracking-[0.3em] font-semibold text-sm">
             Testimonials
           </span>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mt-4 text-[#2F2A24]">
             What People
-            <span className="text-cyan-400"> Say</span>
+            <span className="block text-[#C6A972]">Say</span>
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {testimonials.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-              }}
-              whileHover={{ y: -10 }}
-              className="w-full min-w-0 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-7 lg:p-8 hover:border-cyan-500/40 transition duration-300"
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-[35px] p-10 border border-[#E7DCCB] shadow-lg"
             >
-              {/* Quote Icon */}
-              <FaQuoteLeft className="text-cyan-400 text-2xl sm:text-3xl mb-5 sm:mb-6" />
+              <div className="text-[#C6A972] text-4xl mb-6">
+                <FaQuoteLeft />
+              </div>
 
-              {/* Testimonial */}
-              <p className="text-gray-400 text-sm sm:text-base leading-7 sm:leading-8">
-                "{item.text}"
+              <p className="text-[#6B6256] leading-8 mb-8 italic">
+                "{item.feedback}"
               </p>
 
-              {/* Person */}
-              <div className="mt-6 sm:mt-8">
-                <h4 className="font-bold text-lg sm:text-xl">
+              <div>
+                <h3 className="text-xl font-bold text-[#2F2A24]">
                   {item.name}
-                </h4>
+                </h3>
 
-                <p className="text-cyan-400 text-xs sm:text-sm mt-1">
-                  {item.role}
-                </p>
+                <p className="text-[#C6A972] font-medium mt-1">{item.role}</p>
               </div>
             </motion.div>
           ))}
@@ -86,4 +62,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

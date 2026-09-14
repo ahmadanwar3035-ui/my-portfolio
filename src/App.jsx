@@ -1,23 +1,22 @@
-
 import { useEffect, useState } from "react";
 
-import Navbar from "./Components/Navbar";
-import Loader from "./Components/Loader";
+import Sidebar from "./Components/Sidebar";
 import Hero from "./Components/Hero";
-import Stats from "./Components/Stats";
 import About from "./Components/About";
 import Services from "./Components/Services";
-import Skills from "./Components/Skills";
 import Experience from "./Components/Experience";
 import Education from "./Components/Education";
 import Projects from "./Components/Projects";
-import Testimonials from "./Components/Testimonial";
+import Skills from "./Components/Skills";
+// import Certificates from "./Components/Certificates";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
-import Cursor from "./Components/Cursor";
-import ScrollProgress from "./Components/Scroll";
 
-function App() {
+import Loader from "./Components/Loader";
+import Cursor from "./Components/Cursor";
+import ScrollToTop from "./Components/Scroll";
+
+export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,29 +32,39 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-[#030712] text-white">
-      <Navbar />
+    <div className="min-h-screen overflow-x-hidden bg-[#030712] text-white">
+      {/* Custom Cursor */}
+      <Cursor />
 
-      <main className="w-full overflow-x-hidden">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Website */}
+      <main>
         <Hero />
-        <Stats />
+
         <About />
+
         <Services />
-        <Skills />
+
         <Experience />
+
         <Education />
+
         <Projects />
-        <Testimonials />
+
+        <Skills />
+
+        {/* <Certificates /> */}
+
         <Contact />
       </main>
 
-      <Cursor />
-      <ScrollProgress />
-
+      {/* Footer */}
       <Footer />
+
+      {/* Scroll To Top */}
+      <ScrollToTop />
     </div>
   );
 }
-
-export default App;
-
