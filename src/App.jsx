@@ -32,7 +32,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#030712] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#F6F7FC] text-[#14162B]">
       {/* Custom Cursor */}
       <Cursor />
 

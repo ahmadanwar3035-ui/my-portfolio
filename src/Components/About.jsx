@@ -8,28 +8,16 @@ import {
 
 export default function About() {
   const stats = [
-    {
-      number: "3+",
-      label: "Projects Completed",
-    },
-    {
-      number: "13+",
-      label: "Technologies",
-    },
-    {
-      number: "1+",
-      label: "Years Experience",
-    },
-    {
-      number: "∞",
-      label: "Learning Journey",
-    },
+    { number: "3+", label: "Projects completed" },
+    { number: "13+", label: "Technologies" },
+    { number: "1+", label: "Years experience" },
+    { number: "∞", label: "Learning journey" },
   ];
 
   const highlights = [
     {
       icon: <HiOutlineCode />,
-      title: "Clean Code",
+      title: "Clean code",
       text: "Writing reusable, maintainable and scalable React components.",
     },
     {
@@ -44,7 +32,7 @@ export default function About() {
     },
     {
       icon: <HiOutlineAcademicCap />,
-      title: "Always Learning",
+      title: "Always learning",
       text: "Continuously improving my skills and exploring modern technologies.",
     },
   ];
@@ -52,68 +40,57 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-6 py-24 lg:ml-[270px] lg:px-12 xl:px-20"
+      className="relative bg-[#F6F7FC] px-6 py-24 lg:px-12 xl:px-20"
     >
-      {/* Background Glow */}
-      <div className="pointer-events-none absolute right-0 top-20 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]" />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Section Heading */}
+      <div className="mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-purple-400">
-            About Me
-          </p>
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#2748E0]" />
+            <span className="text-sm text-[#4B5070]">About me</span>
+          </div>
 
-          <h2 className="text-4xl font-black text-white sm:text-5xl">
-            Turning Ideas Into
-            <span className="ml-2 bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
-              Digital Experiences
-            </span>
+          <h2 className="font-display text-4xl font-semibold text-[#14162B] sm:text-5xl">
+            Turning ideas into digital experiences
           </h2>
-
-          <div className="mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500" />
         </motion.div>
 
-        {/* Main Content */}
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mt-14 grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
-            <h3 className="text-2xl font-bold text-white">
-              Hi, I'm Ahmad Anwar 👋
+            <h3 className="font-display text-2xl font-medium text-[#14162B]">
+              Hi, I'm Ahmad Anwar
             </h3>
 
-            <p className="mt-6 leading-8 text-gray-400">
-              I'm a passionate Frontend Developer focused on creating modern,
+            <p className="mt-6 max-w-xl leading-8 text-[#4B5070]">
+              I'm a passionate frontend developer focused on creating modern,
               responsive and user-friendly web applications. I enjoy turning UI
               designs into interactive digital experiences that feel smooth and
               intuitive.
             </p>
 
-            <p className="mt-5 leading-8 text-gray-400">
+            <p className="mt-5 max-w-xl leading-8 text-[#4B5070]">
               My primary focus is on the React ecosystem, including React.js,
-              Next.js and Redux Toolkit. I also work with JavaScript, Tailwind
-              CSS and modern frontend development practices to build clean and
-              scalable interfaces.
+              Next.js and Redux Toolkit, alongside JavaScript and Tailwind CSS,
+              to build clean and scalable interfaces.
             </p>
 
-            <p className="mt-5 leading-8 text-gray-400">
-              I believe great frontend development is not just about making a
-              website look good. It's about creating an experience that is fast,
-              accessible, responsive and enjoyable for users.
+            <p className="mt-5 max-w-xl leading-8 text-[#4B5070]">
+              Great frontend development isn't just about making a website look
+              good — it's about creating an experience that is fast, accessible
+              and enjoyable to use.
             </p>
 
-            {/* Skills Tags */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-2">
               {[
                 "React.js",
                 "Next.js",
@@ -124,7 +101,7 @@ export default function About() {
               ].map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-purple-500/20 bg-purple-500/5 px-4 py-2 text-xs font-medium text-gray-300 transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300"
+                  className="rounded-full border border-[#DDE1F0] bg-[#FFFFFF] px-4 py-2 text-xs font-medium text-[#4B5070] transition-colors duration-300 hover:border-[#2748E0]/50 hover:text-[#14162B]"
                 >
                   {skill}
                 </span>
@@ -134,60 +111,52 @@ export default function About() {
 
           {/* Highlights */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="grid gap-4 sm:grid-cols-2"
           >
-            {highlights.map((item, index) => (
-              <motion.div
+            {highlights.map((item) => (
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-purple-500/[0.04]"
+                className="rounded-2xl border border-[#DDE1F0] bg-[#FFFFFF] p-6 transition-colors duration-300 hover:border-[#2748E0]/40"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-2xl text-purple-400 transition-all duration-300 group-hover:bg-purple-500/20">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#2F5BFF]/10 text-xl text-[#2F5BFF]">
                   {item.icon}
                 </div>
-
-                <h4 className="text-lg font-bold text-white">{item.title}</h4>
-
-                <p className="mt-3 text-sm leading-6 text-gray-500">
+                <h4 className="font-display text-lg font-medium text-[#14162B]">
+                  {item.title}
+                </h4>
+                <p className="mt-2 text-sm leading-6 text-[#6E7391]">
                   {item.text}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-16 grid overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] sm:grid-cols-2 lg:grid-cols-4"
+          transition={{ duration: 0.7 }}
+          className="mt-16 grid overflow-hidden rounded-3xl border border-[#DDE1F0] bg-[#FFFFFF] sm:grid-cols-2 lg:grid-cols-4"
         >
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className={`group p-7 text-center transition-all duration-300 hover:bg-purple-500/[0.04] ${
+              className={`p-7 text-center ${
                 index !== stats.length - 1
-                  ? "border-b border-white/10 sm:border-r lg:border-b-0"
+                  ? "border-b border-[#DDE1F0] sm:border-r lg:border-b-0"
                   : ""
               }`}
             >
-              <h3 className="text-4xl font-black text-white transition-colors duration-300 group-hover:text-purple-400">
+              <h3 className="font-display text-4xl font-semibold text-[#14162B]">
                 {stat.number}
               </h3>
-
-              <p className="mt-2 text-sm text-gray-500">{stat.label}</p>
+              <p className="mt-2 text-sm text-[#6E7391]">{stat.label}</p>
             </div>
           ))}
         </motion.div>

@@ -7,25 +7,15 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 500) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
+      setVisible(window.scrollY > 500);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -38,7 +28,7 @@ export default function ScrollToTop() {
           transition={{ duration: 0.25 }}
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-6 right-6 z-[1000] flex h-12 w-12 items-center justify-center rounded-xl border border-purple-500/30 bg-[#0b0b14]/90 text-lg text-purple-400 shadow-xl shadow-purple-900/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/60 hover:bg-purple-600 hover:text-white"
+          className="fixed bottom-6 right-6 z-[1000] flex h-12 w-12 items-center justify-center rounded-full border border-[#DDE1F0] bg-[#FFFFFF] text-lg text-[#14162B] shadow-lg shadow-[#14162B]/5 transition-colors duration-300 hover:border-[#2748E0] hover:text-[#2748E0]"
         >
           <HiArrowUp />
         </motion.button>

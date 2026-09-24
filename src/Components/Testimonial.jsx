@@ -18,42 +18,46 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 lg:py-32 bg-[#EFE6D7]">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <span className="text-[#C6A972] uppercase tracking-[0.3em] font-semibold text-sm">
-            Testimonials
-          </span>
+    <section
+      id="testimonials"
+      className="relative bg-[#F6F7FC] px-6 py-24 lg:px-12 xl:px-20"
+    >
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#2748E0]" />
+            <span className="text-sm text-[#4B5070]">Testimonials</span>
+          </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mt-4 text-[#2F2A24]">
-            What People
-            <span className="block text-[#C6A972]">Say</span>
+          <h2 className="font-display text-4xl font-semibold text-[#14162B] sm:text-5xl">
+            What people say
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {testimonials.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-[35px] p-10 border border-[#E7DCCB] shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="rounded-3xl border border-[#DDE1F0] bg-[#FFFFFF] p-9"
             >
-              <div className="text-[#C6A972] text-4xl mb-6">
-                <FaQuoteLeft />
-              </div>
+              <FaQuoteLeft className="text-2xl text-[#2748E0]/40" />
 
-              <p className="text-[#6B6256] leading-8 mb-8 italic">
-                "{item.feedback}"
-              </p>
+              <p className="mt-6 leading-8 text-[#4B5070]">{item.feedback}</p>
 
-              <div>
-                <h3 className="text-xl font-bold text-[#2F2A24]">
+              <div className="mt-7 border-t border-[#DDE1F0] pt-5">
+                <h3 className="font-display text-base font-medium text-[#14162B]">
                   {item.name}
                 </h3>
-
-                <p className="text-[#C6A972] font-medium mt-1">{item.role}</p>
+                <p className="mt-1 text-sm text-[#2748E0]">{item.role}</p>
               </div>
             </motion.div>
           ))}
